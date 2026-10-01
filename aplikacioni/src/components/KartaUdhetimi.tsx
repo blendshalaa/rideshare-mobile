@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { tekstiVendeve, type Udhetimi } from "@/lib/udhetimet";
+import Avatar from "./Avatar";
+import Ikona from "./Ikona";
 
 export default function KartaUdhetimi({ udhetimi }: { udhetimi: Udhetimi }) {
   const plot = udhetimi.vendeTeLira === 0;
@@ -7,25 +9,33 @@ export default function KartaUdhetimi({ udhetimi }: { udhetimi: Udhetimi }) {
   return (
     <Link href={`/udhetimi/${udhetimi.id}`} className="karta">
       <div className="karta-krye">
-        <div className="avatar" aria-hidden="true">
-          {udhetimi.shoferi.charAt(0)}
-        </div>
+        <Avatar id={udhetimi.id} emri={udhetimi.shoferi} />
         <div className="karta-shoferi">
           <strong>{udhetimi.shoferi}</strong>
-          <span className="i-zbehte">
-            ★ {udhetimi.vleresimi} ({udhetimi.numriVleresimeve}) · {udhetimi.makina}
+          <span className="vleresimi">
+            <Ikona emri="ylli" madhesia={14} className="ylli" />
+            {udhetimi.vleresimi} <span className="i-zbehte">({udhetimi.numriVleresimeve})</span>
           </span>
         </div>
+        <span className="makina-etiketa">
+          <Ikona emri="makina" madhesia={16} />
+          {udhetimi.makina}
+        </span>
       </div>
 
-      <p className="rruga">
-        {udhetimi.nga} → {udhetimi.deri}
-      </p>
-
-      <div className="karta-fund">
-        <span>🕒 {udhetimi.ora}</span>
-        <span className={plot ? "etiketa etiketa-plot" : "etiketa"}>
-          {tekstiVendeve(udhetimi.vendeTeLira)}
+      <div className="karta-info">
+        <span className="rreshti">
+          <Ikona emri="vendi" madhesia={16} className="i-zbehte" />
+          {udhetimi.nga}
+          <Ikona emri="shigjeta" madhesia={14} className="i-zbehte" />
+          {udhetimi.deri}
+        </span>
+        <span className="rreshti">
+          <Ikona emri="ora" madhesia={16} className="i-zbehte" />
+          Sot, {udhetimi.ora}
+          <span className={plot ? "etiketa etiketa-plot" : "etiketa"}>
+            {tekstiVendeve(udhetimi.vendeTeLira)}
+          </span>
         </span>
       </div>
 
