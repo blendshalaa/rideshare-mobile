@@ -23,14 +23,24 @@ npm run dev
 
 Pastaj hap adresën që jep terminali (zakonisht http://localhost:3000).
 
-## 4. Provat
+## Prova 1 — Lista në telefon
 
-**Prova 1 — Lista në telefon:** Te adresa kryesore shfaqen saktësisht tri karta dhe në pamjen e telefonit në Inspect nuk ka lëvizje anash.
+**Hapat:** Hapa adresën kryesore `http://localhost:3000`, pastaj në Chrome kliko me të djathtën → Inspect → ikona e telefonit dhe zgjodha pamjen e telefonit.
 
-**Prova 2 — Detajet, zero vende dhe ID 99:** Kur klikoj kartën e dytë adresa bëhet `/udhetimi/2` dhe shfaqet vendtakimi “Stacioni i autobusëve, Prishtinë”; te karta 3 butoni “Nuk ka vende të lira” është i çaktivizuar, ndërsa `/udhetimi/99` shfaq “Udhëtimi nuk u gjet”.
+**Rezultati:** U shfaqën saktësisht tri karta (Arben Krasniqi, Arta Berisha, Lirim Zenuni) dhe faqja nuk lëviz anash në telefon.
 
-**Prova 3 — Kërkesa dhe kthimi mbrapa:** Pas klikimit “Kërko vend” shfaqet “Simulim: Në pritje”, dhe me shigjetën ← ose “Kthehu te lista” kthehem mbrapa pa asnjë rezervim real.
+## Prova 2 — Detajet e kartës 2, zero vende dhe ID 99
 
-## 5. Prova me kolegun
+**Hapat:** Klikova kartën e dytë, pastaj u ktheva dhe hapa kartën e tretë, në fund shkrova me dorë adresën `/udhetimi/99`.
+
+**Rezultati:** Te karta 2 adresa u bë `/udhetimi/2` dhe u shfaq vendtakimi “Stacioni i autobusëve, Prishtinë”; te karta 3 butoni “Nuk ka vende të lira” ishte i çaktivizuar; adresa `/udhetimi/99` shfaqi faqen “Udhëtimi nuk u gjet”.
+
+## Prova 3 — Mesazhi “Në pritje” dhe kthimi mbrapa
+
+**Hapat:** Te detajet e kartës 2 klikova “Kërko vend”, pastaj klikova shigjetën ← dhe në fund “Kthehu te lista”.
+
+**Rezultati:** U shfaq mesazhi “Simulim: Në pritje”, shigjeta më ktheu te detajet dhe “Kthehu te lista” më ktheu te lista, pa asnjë rezervim real.
+
+## Prova me kolegun
 
 Kolegu i kaloi të tri provat dhe arriti të lëvizë listë → detaje → kërkesë → mbrapa pa ndihmë.
