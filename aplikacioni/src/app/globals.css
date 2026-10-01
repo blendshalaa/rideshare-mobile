@@ -1,0 +1,218 @@
+/* Stile mobile-first për RideShare */
+
+:root {
+  --blu: #1d4ed8;
+  --blu-zbehte: #dbeafe;
+  --teksti: #0f172a;
+  --zbehte: #64748b;
+  --kufiri: #cbd5e1;
+  --sfondi: #f1f5f9;
+  --karta: #ffffff;
+  --kuqe: #b91c1c;
+  --kuqe-zbehte: #fee2e2;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  background: var(--sfondi);
+  color: var(--teksti);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.5;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.telefoni {
+  max-width: 480px;
+  min-height: 100vh;
+  margin: 0 auto;
+  background: var(--sfondi);
+}
+
+.koka {
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  background: var(--karta);
+  border-bottom: 1px solid var(--kufiri);
+}
+
+.koka h1 {
+  font-size: 1.2rem;
+  color: var(--blu);
+}
+
+.mbrapa {
+  font-size: 1.4rem;
+  line-height: 1;
+  padding: 4px 8px;
+  color: var(--blu);
+}
+
+.permbajtja {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.qender {
+  align-items: center;
+  text-align: center;
+  padding-top: 40px;
+}
+
+.titulli-listes {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.titulli-listes h2 {
+  font-size: 1.05rem;
+}
+
+.i-zbehte {
+  color: var(--zbehte);
+  font-size: 0.9rem;
+}
+
+.lista {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.karta,
+.kutia {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px;
+  background: var(--karta);
+  border: 1px solid var(--kufiri);
+  border-radius: 12px;
+}
+
+.karta:hover,
+.karta:focus-visible {
+  border-color: var(--blu);
+}
+
+.kutia h2 {
+  font-size: 1rem;
+}
+
+.karta-krye {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.karta-shoferi {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.avatar {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--blu-zbehte);
+  color: var(--blu);
+  font-weight: 700;
+}
+
+.rruga {
+  font-weight: 600;
+}
+
+.karta-fund {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.etiketa {
+  padding: 2px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--blu);
+  color: var(--blu);
+  font-size: 0.85rem;
+}
+
+.etiketa-plot {
+  border-color: var(--kuqe);
+  color: var(--kuqe);
+  background: var(--kuqe-zbehte);
+}
+
+.detajet {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.buton {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--blu);
+  border-radius: 10px;
+  background: var(--blu);
+  color: #fff;
+  font: inherit;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+}
+
+.buton-dyte {
+  background: var(--blu-zbehte);
+  color: var(--blu);
+}
+
+.buton:disabled {
+  background: #e2e8f0;
+  border-color: var(--kufiri);
+  color: var(--zbehte);
+  cursor: not-allowed;
+}
+
+.ikona-ore {
+  font-size: 3.5rem;
+}
+
+.statusi {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  background: var(--blu-zbehte);
+  color: var(--blu);
+  font-weight: 700;
+}
