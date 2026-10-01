@@ -1,46 +1,21 @@
-# RideShare — Java 3: kartat dhe faqet
+# RideShare — Java 3
 
-## 1. Çfarë ndërtova
+## Çfarë ndërtova
+Sot përfundova tri ekranet e RideShare në Next.js: listën me tri karta udhëtimesh (`KartaUdhetimi.tsx` me të dhënat nga `udhetimet.ts`), faqen e detajeve të udhëtimit `/udhetimi/[id]` dhe faqen e kërkesës në pritje, si dhe faqen “Udhëtimi nuk u gjet”.
 
-Ndërtova tri ekranet e skicës në Next.js: listën me tri karta udhëtimesh, faqen e detajeve dhe faqen e kërkesës në pritje. Të gjitha të dhënat janë fiktive dhe kërkesa është vetëm simulim, pa rezervim real.
+## Provat që bëra
+### Prova 1: Lista në telefon
+Hapa faqen kryesore në pamjen e telefonit (Inspect → ikona e telefonit); prisja tri karta pa lëvizje anash; pashë saktësisht tri karta (Arben Krasniqi, Arta Berisha, Lirim Zenuni) dhe faqja nuk lëvizte anash.
 
-## 2. Skedarët kryesorë
+### Prova 2: Detajet e udhëtimit të dytë
+Klikova kartën 2; prisja adresën /udhetimi/2 dhe vendtakimin e saj; pashë adresën /udhetimi/2 dhe vendtakimin “Stacioni i autobusëve, Prishtinë”.
+Shënova edhe çfarë ndodhi te karta 3 (zero vende) dhe te /udhetimi/99: te karta 3 butoni “Nuk ka vende të lira” ishte i çaktivizuar, ndërsa /udhetimi/99 shfaqi faqen “Udhëtimi nuk u gjet”.
 
-- `aplikacioni/src/lib/udhetimet.ts` — tri udhëtime fiktive (udhëtimi 3 ka 0 vende të lira).
-- `aplikacioni/src/components/KartaUdhetimi.tsx` — karta e një udhëtimi.
-- `aplikacioni/src/app/page.tsx` — lista me tri kartat.
-- `aplikacioni/src/app/udhetimi/[id]/page.tsx` — detajet e udhëtimit dhe butoni “Kërko vend”.
-- `aplikacioni/src/app/udhetimi/[id]/kerkesa/page.tsx` — mesazhi “Simulim: Në pritje”.
-- `aplikacioni/src/app/not-found.tsx` — faqja “Udhëtimi nuk u gjet”.
+### Prova 3: Kërkesa në pritje
+Klikova Kërko vend; prisja “Simulim: Në pritje”, pa rezervim real; pashë mesazhin “Kërkesa u dërgua!” dhe “Simulim: Në pritje”, pa asnjë rezervim real. Pastaj u ktheva te detajet dhe lista: shigjeta ← më ktheu te detajet e udhëtimit dhe butoni “Kthehu te lista” më ktheu te lista me tri kartat.
 
-## 3. Si ta nis
+## Çfarë do të përmirësoj
+Javën tjetër dua ta ruaj kërkesën në mënyrë që faqja “Kërkesat” të tregojë kërkesat e dërguara, sepse tani “Në pritje” është vetëm simulim dhe zhduket kur kthehem te lista.
 
-```
-cd aplikacioni
-npm install
-npm run dev
-```
-
-Pastaj hap adresën që jep terminali (zakonisht http://localhost:3000).
-
-## Prova 1 — Lista në telefon
-
-**Hapat:** Hapa adresën kryesore `http://localhost:3000`, pastaj në Chrome kliko me të djathtën → Inspect → ikona e telefonit dhe zgjodha pamjen e telefonit.
-
-**Rezultati:** U shfaqën saktësisht tri karta (Arben Krasniqi, Arta Berisha, Lirim Zenuni) dhe faqja nuk lëviz anash në telefon.
-
-## Prova 2 — Detajet e kartës 2, zero vende dhe ID 99
-
-**Hapat:** Klikova kartën e dytë, pastaj u ktheva dhe hapa kartën e tretë, në fund shkrova me dorë adresën `/udhetimi/99`.
-
-**Rezultati:** Te karta 2 adresa u bë `/udhetimi/2` dhe u shfaq vendtakimi “Stacioni i autobusëve, Prishtinë”; te karta 3 butoni “Nuk ka vende të lira” ishte i çaktivizuar; adresa `/udhetimi/99` shfaqi faqen “Udhëtimi nuk u gjet”.
-
-## Prova 3 — Mesazhi “Në pritje” dhe kthimi mbrapa
-
-**Hapat:** Te detajet e kartës 2 klikova “Kërko vend”, pastaj klikova shigjetën ← dhe në fund “Kthehu te lista”.
-
-**Rezultati:** U shfaq mesazhi “Simulim: Në pritje”, shigjeta më ktheu te detajet dhe “Kthehu te lista” më ktheu te lista, pa asnjë rezervim real.
-
-## Prova me kolegun
-
-Kolegu i kaloi të tri provat dhe arriti të lëvizë listë → detaje → kërkesë → mbrapa pa ndihmë.
+## Ndihma nga AI (Artificial Intelligence – inteligjencë artificiale)
+AI (Claude) më ndihmoi të krijoj projektin Next.js, të shkruaj kodin e kartave dhe të faqeve dhe ta formuloj këtë raport; vetë i hapa faqet në shfletues, provova klikimet dhe adresat dhe kontrollova rezultatet.
