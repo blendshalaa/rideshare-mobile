@@ -1,44 +1,64 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import Avatar from "@/components/Avatar";
+import GabimLidhjeje from "@/components/GabimLidhjeje";
 import Ikona from "@/components/Ikona";
-import { gjejUdhetimin, tekstiVendeve } from "@/lib/udhetimet";
+import { tekstiVendeve } from "@/lib/tekste";
+import { gjejUdhetimin } from "@/lib/udhetimet";
 
-export default async function DetajetUdhetimit({
+export const dynamic = "force-dynamic";
+
+function Koka() {
+  return (
+    <header className="koka">
+      <Link href="/" className="mbrapa" aria-label="Kthehu te lista">
+        <Ikona emri="mbrapa" madhesia={22} />
+      </Link>
+      <h1>Detajet e udhëtimit</h1>
+    </header>
+  );
+}
+
+export default async function Detajet({
   params,
 }: PageProps<"/udhetimi/[id]">) {
   const { id } = await params;
-  const udhetimi = gjejUdhetimin(id);
+  let udhetim;
+  try {
+    udhetim = await gjejUdhetimin(id);
+  } catch {
+    return (
+      <>
+        <Koka />
+        <main className="permbajtja">
+          <GabimLidhjeje>
+            <Link href="/" className="buton buton-kufi">
+              ← Kthehu te lista
+            </Link>
+          </GabimLidhjeje>
+        </main>
+      </>
+    );
+  }
+  // notFound mbetet jashtë try/catch: mungesa ≠ gabim lidhjeje.
+  if (!udhetim) notFound();
 
-  if (!udhetimi) notFound();
-
-  const plot = udhetimi.vendeTeLira === 0;
+  const plot = udhetim.vende === 0;
 
   return (
     <>
-      <header className="koka">
-        <Link href="/" className="mbrapa" aria-label="Kthehu te lista">
-          <Ikona emri="mbrapa" madhesia={22} />
-        </Link>
-        <h1>Detajet e udhëtimit</h1>
-      </header>
+      <Koka />
 
       <main className="permbajtja me-cta">
         <section className="kutia pa-mbushje">
           <div className="hero">
-            <Ikona emri="makina" madhesia={96} />
-            <span className="hero-etiketa">{udhetimi.makina}</span>
-          </div>
-          <div className="karta-krye hero-shoferi">
-            <Avatar id={udhetimi.id} emri={udhetimi.shoferi} madhesia={52} />
-            <div className="karta-shoferi">
-              <strong>{udhetimi.shoferi}</strong>
-              <span className="vleresimi">
-                <Ikona emri="ylli" madhesia={14} className="ylli" />
-                {udhetimi.vleresimi}{" "}
-                <span className="i-zbehte">({udhetimi.numriVleresimeve} vlerësime)</span>
-              </span>
-            </div>
+            <h2 className="hero-rruga">
+              {udhetim.nisja} – {udhetim.destinacioni}
+            </h2>
+            <span className="hero-ora">
+              <Ikona emri="ora" madhesia={18} />
+              {udhetim.ora}
+            </span>
+            <span className="hero-etiketa">Udhëtimi #{udhetim.id}</span>
           </div>
         </section>
 
@@ -47,55 +67,43 @@ export default async function DetajetUdhetimit({
             <li>
               <span className="ikona-rrethi"><Ikona emri="vendi" /></span>
               <div>
-                <strong>
-                  {udhetimi.nga} → {udhetimi.deri}
-                </strong>
-                <span className="i-zbehte">Vendtakimi: {udhetimi.vendtakimi}</span>
+                <span className="i-zbehte">Vendtakimi</span>
+                <strong>{udhetim.vendtakimi}</strong>
               </div>
             </li>
             <li>
-              <span className="ikona-rrethi"><Ikona emri="kalendari" /></span>
-              {udhetimi.data}
-            </li>
-            <li>
               <span className="ikona-rrethi"><Ikona emri="ora" /></span>
-              {udhetimi.ora}
-            </li>
-            <li>
-              <span className="ikona-rrethi"><Ikona emri="makina" /></span>
-              <span>
-                {udhetimi.makina}{" "}
-                <span className="i-zbehte">(Ngjyrë {udhetimi.ngjyra})</span>
-              </span>
+              <div>
+                <span className="i-zbehte">Ora</span>
+                <strong>{udhetim.ora}</strong>
+              </div>
             </li>
             <li>
               <span className={plot ? "ikona-rrethi e-kuqe" : "ikona-rrethi"}>
                 <Ikona emri="personi" />
               </span>
-              <span className={plot ? "teksti-kuq" : undefined}>
-                {tekstiVendeve(udhetimi.vendeTeLira)}
-              </span>
+              <div>
+                <span className="i-zbehte">Vende të lira: {udhetim.vende}</span>
+                <strong className={plot ? "teksti-kuq" : undefined}>
+                  {tekstiVendeve(udhetim.vende)}
+                </strong>
+              </div>
             </li>
           </ul>
-        </section>
-
-        <section className="kutia">
-          <h2>Përshkrimi</h2>
-          <p className="i-zbehte">{udhetimi.pershkrimi}</p>
         </section>
       </main>
 
       <div className="cta">
-        {plot ? (
+        {udhetim.vende > 0 ? (
+          <Link className="buton" href={`/udhetimi/${id}/kerkesa`}>
+            <Ikona emri="shtoPerson" />
+            Kërko vend
+          </Link>
+        ) : (
           <button type="button" className="buton" disabled>
             <Ikona emri="bllok" />
             Nuk ka vende të lira
           </button>
-        ) : (
-          <Link href={`/udhetimi/${udhetimi.id}/kerkesa`} className="buton">
-            <Ikona emri="shtoPerson" />
-            Kërko vend
-          </Link>
         )}
       </div>
     </>

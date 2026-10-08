@@ -1,41 +1,32 @@
 import Link from "next/link";
-import { tekstiVendeve, type Udhetimi } from "@/lib/udhetimet";
-import Avatar from "./Avatar";
+import { tekstiVendeve } from "@/lib/tekste";
+import type { Udhetim } from "@/lib/udhetimet";
 import Ikona from "./Ikona";
 
-export default function KartaUdhetimi({ udhetimi }: { udhetimi: Udhetimi }) {
-  const plot = udhetimi.vendeTeLira === 0;
+export function KartaUdhetimi({ udhetim }: { udhetim: Udhetim }) {
+  const plot = udhetim.vende === 0;
 
   return (
-    <Link href={`/udhetimi/${udhetimi.id}`} className="karta">
+    <Link href={`/udhetimi/${udhetim.id}`} className="karta">
       <div className="karta-krye">
-        <Avatar id={udhetimi.id} emri={udhetimi.shoferi} />
-        <div className="karta-shoferi">
-          <strong>{udhetimi.shoferi}</strong>
-          <span className="vleresimi">
-            <Ikona emri="ylli" madhesia={14} className="ylli" />
-            {udhetimi.vleresimi} <span className="i-zbehte">({udhetimi.numriVleresimeve})</span>
-          </span>
-        </div>
-        <span className="makina-etiketa">
-          <Ikona emri="makina" madhesia={16} />
-          {udhetimi.makina}
+        <span className="ikona-rrethi">
+          <Ikona emri="vendi" />
         </span>
+        <div className="karta-shoferi">
+          <strong className="rreshti">
+            {udhetim.nisja}
+            <Ikona emri="shigjeta" madhesia={14} className="i-zbehte" />
+            {udhetim.destinacioni}
+          </strong>
+          <span className="i-zbehte vendtakimi">{udhetim.vendtakimi}</span>
+        </div>
+        <span className="ora-karta">{udhetim.ora}</span>
       </div>
 
-      <div className="karta-info">
-        <span className="rreshti">
-          <Ikona emri="vendi" madhesia={16} className="i-zbehte" />
-          {udhetimi.nga}
-          <Ikona emri="shigjeta" madhesia={14} className="i-zbehte" />
-          {udhetimi.deri}
-        </span>
-        <span className="rreshti">
-          <Ikona emri="ora" madhesia={16} className="i-zbehte" />
-          Sot, {udhetimi.ora}
-          <span className={plot ? "etiketa etiketa-plot" : "etiketa"}>
-            {tekstiVendeve(udhetimi.vendeTeLira)}
-          </span>
+      <div className="rreshti">
+        <Ikona emri="personi" madhesia={16} className="i-zbehte" />
+        <span className={plot ? "etiketa etiketa-plot" : "etiketa"}>
+          {tekstiVendeve(udhetim.vende)}
         </span>
       </div>
 
@@ -43,3 +34,5 @@ export default function KartaUdhetimi({ udhetimi }: { udhetimi: Udhetimi }) {
     </Link>
   );
 }
+
+export default KartaUdhetimi;
