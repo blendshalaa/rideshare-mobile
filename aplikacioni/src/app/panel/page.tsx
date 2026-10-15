@@ -3,6 +3,7 @@ import Hyrja from "@/components/Hyrja";
 import Ikona from "@/components/Ikona";
 import MenyjaPoshte from "@/components/MenyjaPoshte";
 import { profiliIm } from "@/lib/lejet";
+import { gjejUdhetimin } from "@/lib/udhetimet";
 import { ruajOren } from "./actions";
 
 export const dynamic = "force-dynamic";
@@ -30,8 +31,11 @@ export default async function Panel({ searchParams }: {
 }) {
   const { m } = await searchParams;
   let p;
+  let oraAktuale = "08:15";
   try {
     p = await profiliIm();
+    // Formulari tregon orën që është ruajtur realisht në Neon.
+    if (p?.roli === "shofer") oraAktuale = (await gjejUdhetimin("2"))?.ora ?? oraAktuale;
   } catch {
     return (
       <>
@@ -80,8 +84,23 @@ export default async function Panel({ searchParams }: {
           <form action={ruajOren} className="kutia">
             <h2>Ndrysho orën e udhëtimit tim</h2>
             <input type="hidden" name="id" value="2" />
-            <label htmlFor="ora" className="i-zbehte">Ora e re</label>
-            <input id="ora" name="ora" type="time" defaultValue="08:15" required className="fusha" />
+            <p className="i-zbehte">
+              Ora aktuale në databazë: <strong className="ora-aktuale">{oraAktuale}</strong>
+            </p>
+            <label htmlFor="ora" className="i-zbehte">Ora e re (format 24-orësh, p.sh. 10:00)</label>
+            {/* Tekst e jo type="time": shmang formatin AM/PM të shfletuesit. */}
+            <input
+              key={oraAktuale}
+              id="ora"
+              name="ora"
+              type="text"
+              inputMode="numeric"
+              pattern="([01][0-9]|2[0-3]):[0-5][0-9]"
+              placeholder="08:25"
+              defaultValue={oraAktuale}
+              required
+              className="fusha"
+            />
             <button type="submit" className="buton">Ruaj orën</button>
             <p className="i-zbehte shenim">
               Formulari i laboratorit provon ID 2. Serveri verifikon pronarin edhe nëse ID ndryshohet.

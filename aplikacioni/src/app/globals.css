@@ -705,3 +705,8 @@ svg {
   color: var(--kuqe);
   border: 1px solid #fecaca;
 }
+
+.ora-aktuale {
+  color: var(--teksti);
+  font-size: 1.05rem;
+}
