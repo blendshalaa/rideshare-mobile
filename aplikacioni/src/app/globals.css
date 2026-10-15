@@ -612,3 +612,96 @@ svg {
   color: var(--kuqe);
   box-shadow: 0 0 0 10px rgb(220 38 38 / 0.06);
 }
+
+/* ---------- Java 5: hyrja dhe paneli ---------- */
+
+.lidhja-panel {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: var(--blu-zbehte);
+  color: var(--blu);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.profili {
+  align-items: center;
+  text-align: center;
+}
+
+.avatar-madh {
+  display: grid;
+  place-items: center;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--blu);
+  color: #fff;
+  font-size: 1.75rem;
+  font-weight: 700;
+}
+
+.profili code {
+  padding: 1px 6px;
+  border-radius: 6px;
+  background: var(--sfondi);
+  font-size: 0.85rem;
+}
+
+.etiketa-gri {
+  background: #f1f5f9;
+  color: var(--zbehte);
+}
+
+.buton-github {
+  background: #0f172a;
+}
+
+.buton-github:hover {
+  background: #1e293b;
+}
+
+.fusha {
+  width: 100%;
+  min-height: 48px;
+  padding: 10px 14px;
+  border: 1px solid var(--kufiri);
+  border-radius: 12px;
+  font: inherit;
+  font-size: 1.1rem;
+  background: #fff;
+}
+
+.fusha:focus {
+  outline: 2px solid var(--blu);
+  outline-offset: 1px;
+}
+
+.shenim {
+  font-size: 0.8rem;
+}
+
+.qender-tekst {
+  text-align: center;
+}
+
+.njoftim {
+  padding: 12px 14px;
+  border-radius: 12px;
+  font-weight: 500;
+}
+
+.njoftim-sukses {
+  background: #ecfdf5;
+  color: #047857;
+  border: 1px solid #a7f3d0;
+}
+
+.njoftim-gabim {
+  background: var(--kuqe-zbehte);
+  color: var(--kuqe);
+  border: 1px solid #fecaca;
+}

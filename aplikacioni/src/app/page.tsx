@@ -1,3 +1,4 @@
+import Link from "next/link";
 import GabimLidhjeje from "@/components/GabimLidhjeje";
 import Ikona from "@/components/Ikona";
 import { KartaUdhetimi } from "@/components/KartaUdhetimi";
@@ -14,9 +15,10 @@ function Koka() {
         <Ikona emri="makina" madhesia={22} />
       </span>
       <h1>RideShare</h1>
-      <span className="koka-djathtas i-zbehte" aria-hidden="true">
-        <Ikona emri="menu" madhesia={24} />
-      </span>
+      <Link href="/panel" className="koka-djathtas lidhja-panel">
+        <Ikona emri="personi" madhesia={18} />
+        Hyr / Paneli im
+      </Link>
     </header>
   );
 }
