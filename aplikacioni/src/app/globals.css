@@ -710,3 +710,23 @@ svg {
   color: var(--teksti);
   font-size: 1.05rem;
 }
+
+/* ---------- Java 6: PWA ---------- */
+
+.pwa-shirit {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 2px 8px;
+  padding: 8px 16px;
+  background: #0f172a;
+  color: #cbd5e1;
+  font-size: 0.75rem;
+}
+
+.pwa-shirit a {
+  color: #fff;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
