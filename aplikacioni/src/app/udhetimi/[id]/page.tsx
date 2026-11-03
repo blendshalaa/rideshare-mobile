@@ -83,7 +83,7 @@ export default async function Detajet({
                 <Ikona emri="personi" />
               </span>
               <div>
-                <span className="i-zbehte">Vende të lira: {udhetim.vende}</span>
+                <span className="i-zbehte">Vendet</span>
                 <strong className={plot ? "teksti-kuq" : undefined}>
                   {tekstiVendeve(udhetim.vende)}
                 </strong>
