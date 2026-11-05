@@ -730,3 +730,17 @@ svg {
   text-decoration: underline;
   text-underline-offset: 2px;
 }
+
+/* ---------- Java 8: vendtakimi ---------- */
+
+.vendtakimi .njoftim {
+  margin: 0;
+}
+
+.vendtakimi [data-testid="meeting-error"]:empty {
+  display: none;
+}
+
+.vendtakimi [data-testid="confirmed-meeting"] {
+  color: var(--blu);
+}

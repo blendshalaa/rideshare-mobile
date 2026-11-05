@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import GabimLidhjeje from "@/components/GabimLidhjeje";
 import Ikona from "@/components/Ikona";
+import Vendtakimi from "@/components/Vendtakimi";
 import { tekstiVendeve } from "@/lib/tekste";
 import { gjejUdhetimin } from "@/lib/udhetimet";
 
@@ -91,6 +92,8 @@ export default async function Detajet({
             </li>
           </ul>
         </section>
+
+        <Vendtakimi />
       </main>
 
       <div className="cta">
