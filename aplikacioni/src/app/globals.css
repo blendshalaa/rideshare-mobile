@@ -744,3 +744,27 @@ svg {
 .vendtakimi [data-testid="confirmed-meeting"] {
   color: var(--blu);
 }
+
+/* ---------- Java 9: të preferuarat ---------- */
+
+.buton-yll {
+  background: #fff;
+  color: var(--teksti);
+  border: 1.5px solid var(--kufiri);
+}
+
+.buton-yll:hover {
+  background: #fffbeb;
+}
+
+.buton-yll.i-mbushur,
+.buton-yll.i-mbushur:disabled {
+  background: #fffbeb;
+  color: #b45309;
+  border-color: #fcd34d;
+  cursor: default;
+}
+
+.preferimi-numri strong {
+  font-size: 1.1rem;
+}

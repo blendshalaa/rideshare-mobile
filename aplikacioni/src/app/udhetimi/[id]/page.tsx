@@ -1,8 +1,11 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import GabimLidhjeje from "@/components/GabimLidhjeje";
+import ButoniPreferimit from "@/components/ButoniPreferimit";
 import Ikona from "@/components/Ikona";
 import Vendtakimi from "@/components/Vendtakimi";
+import { profiliIm } from "@/lib/lejet";
+import { lexoPreferimet } from "@/lib/preferimet";
 import { tekstiVendeve } from "@/lib/tekste";
 import { gjejUdhetimin } from "@/lib/udhetimet";
 
@@ -44,6 +47,16 @@ export default async function Detajet({
   if (!udhetim) notFound();
 
   const plot = udhetim.vende === 0;
+
+  // Preferimet lexohen nga serveri, që të mbeten pas rifreskimit.
+  let profili = null;
+  let preferimet: string[] = [];
+  try {
+    profili = await profiliIm();
+    if (profili) preferimet = await lexoPreferimet(profili.id);
+  } catch {
+    profili = null;
+  }
 
   return (
     <>
@@ -92,6 +105,13 @@ export default async function Detajet({
             </li>
           </ul>
         </section>
+
+        <ButoniPreferimit
+          udhetimId={udhetim.id}
+          fillimisht={preferimet.includes(udhetim.id)}
+          numriFillestar={preferimet.length}
+          brenda={Boolean(profili)}
+        />
 
         <Vendtakimi />
       </main>
