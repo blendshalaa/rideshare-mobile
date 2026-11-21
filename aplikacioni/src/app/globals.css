@@ -768,3 +768,35 @@ svg {
 .preferimi-numri strong {
   font-size: 1.1rem;
 }
+
+/* ---------- Java 10: sinkronizimi ---------- */
+
+.sink-rreshti {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.sink-vende {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.sink-titulli {
+  margin-bottom: 8px;
+}
+
+.sink-kerkesa {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px 0;
+  border-top: 1px solid var(--kufiri);
+}
+
+.njoftim-paralajmerim {
+  background: #fffbeb;
+  color: #b45309;
+  border: 1px solid #fde68a;
+}

@@ -3,10 +3,10 @@ import { notFound } from "next/navigation";
 import GabimLidhjeje from "@/components/GabimLidhjeje";
 import ButoniPreferimit from "@/components/ButoniPreferimit";
 import Ikona from "@/components/Ikona";
+import SinkronizimiUdhetimit from "@/components/SinkronizimiUdhetimit";
 import Vendtakimi from "@/components/Vendtakimi";
 import { profiliIm } from "@/lib/lejet";
 import { lexoPreferimet } from "@/lib/preferimet";
-import { tekstiVendeve } from "@/lib/tekste";
 import { gjejUdhetimin } from "@/lib/udhetimet";
 
 export const dynamic = "force-dynamic";
@@ -46,8 +46,6 @@ export default async function Detajet({
   // notFound mbetet jashtë try/catch: mungesa ≠ gabim lidhjeje.
   if (!udhetim) notFound();
 
-  const plot = udhetim.vende === 0;
-
   // Preferimet lexohen nga serveri, që të mbeten pas rifreskimit.
   let profili = null;
   let preferimet: string[] = [];
@@ -62,7 +60,7 @@ export default async function Detajet({
     <>
       <Koka />
 
-      <main className="permbajtja me-cta">
+      <main className="permbajtja">
         <section className="kutia pa-mbushje">
           <div className="hero">
             <h2 className="hero-rruga">
@@ -92,19 +90,10 @@ export default async function Detajet({
                 <strong>{udhetim.ora}</strong>
               </div>
             </li>
-            <li>
-              <span className={plot ? "ikona-rrethi e-kuqe" : "ikona-rrethi"}>
-                <Ikona emri="personi" />
-              </span>
-              <div>
-                <span className="i-zbehte">Vendet</span>
-                <strong className={plot ? "teksti-kuq" : undefined}>
-                  {tekstiVendeve(udhetim.vende)}
-                </strong>
-              </div>
-            </li>
           </ul>
         </section>
+
+        <SinkronizimiUdhetimit udhetimId={udhetim.id} />
 
         <ButoniPreferimit
           udhetimId={udhetim.id}
@@ -116,19 +105,6 @@ export default async function Detajet({
         <Vendtakimi />
       </main>
 
-      <div className="cta">
-        {udhetim.vende > 0 ? (
-          <Link className="buton" href={`/udhetimi/${id}/kerkesa`}>
-            <Ikona emri="shtoPerson" />
-            Kërko vend
-          </Link>
-        ) : (
-          <button type="button" className="buton" disabled>
-            <Ikona emri="bllok" />
-            Nuk ka vende të lira
-          </button>
-        )}
-      </div>
     </>
   );
 }
